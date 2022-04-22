@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="fondo-de-pared-ladrillo-nuevo-patrón-ladrillos-naranja-muro-textura-color-196860132.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MvvmLightLibs" Version="5.4.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="fondo-de-pared-ladrillo-nuevo-patrón-ladrillos-naranja-muro-textura-color-196860132.jpg" />
+  </ItemGroup>
+
+</Project>

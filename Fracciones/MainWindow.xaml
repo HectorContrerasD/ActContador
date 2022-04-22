@@ -1,0 +1,95 @@
+﻿<Window x:Class="Fracciones.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Fracciones"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="485" Width="800" Background="DarkTurquoise">
+    <Window.DataContext>
+        <local:SumaYResta></local:SumaYResta>
+    </Window.DataContext>
+    <StackPanel>
+        <StackPanel.Resources>
+            <Style TargetType="TextBox">
+                <Setter Property="FontSize" Value="30"></Setter>
+                <Setter Property="Margin" Value="20,0,20,0"></Setter>
+                <Setter Property="TextAlignment" Value="Center"></Setter>
+                <Setter Property="Width" Value="100"></Setter>
+            </Style>
+            <Style TargetType="Button">
+                <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+                <Setter Property="FontSize" Value="20"></Setter>
+                <Setter Property="Padding" Value="3"></Setter>
+                <Setter Property="Background" Value="Indigo"></Setter>
+                <Setter Property="Foreground" Value="White"></Setter>
+            </Style>
+        </StackPanel.Resources>
+        <TextBlock FontSize="40" TextAlignment="Center" Foreground="Indigo" Margin="-16,0,0,0" Padding="20,75,20,10" Background="White" FontWeight="Bold" FontStyle="Italic">
+            <TextBlock.RenderTransform>
+                        <RotateTransform Angle="-5"></RotateTransform>
+                    </TextBlock.RenderTransform>¡Suma y Resta de fracciones!
+        </TextBlock>
+        <Grid Margin="10">
+            <Grid.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="BorderThickness" Value="0,0,0,5"></Setter>
+                    <Setter Property="BorderBrush" Value="Indigo"></Setter>
+                </Style>
+                <Style TargetType="TextBlock">
+                    <Setter Property="FontSize" Value="30"></Setter>
+                    <Setter Property="Foreground" Value="White"></Setter>
+                    <Setter Property="TextAlignment" Value="Center"></Setter>
+                </Style>
+            </Grid.Resources>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.ColumnSpan="5" HorizontalAlignment="Center">Fórmulas para fracciones con distinto denominador</TextBlock>
+            <Image Name="Img" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" Height="70" Margin="10">
+                <Image.Style>
+                    <Style TargetType="Image">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=signo,Path=SelectedItem.Content}" Value="+">
+                                <Setter Property="Source" Value="https://i.postimg.cc/02WWb9mm/Screenshot-20220327-195623.jpg"></Setter>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding ElementName=signo,Path=SelectedItem.Content}" Value="-">
+                                <Setter Property="Source" Value="https://i.postimg.cc/y6rcRxQV/IMG-20220327-200852.jpg"></Setter>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Image.Style>
+            </Image>
+            <Border Grid.Row="2">
+                <TextBox Text="{Binding Numerador1}"></TextBox>
+            </Border>
+            <TextBlock Grid.Row="2" Grid.Column="3" Grid.RowSpan="2" VerticalAlignment="Center">=</TextBlock>
+            <TextBox Grid.Row="3" Text="{Binding Denominador1}"></TextBox>
+            <ComboBox Name="signo" FontSize="40" Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" Margin="20" Text="{Binding Signo}" >
+                <ComboBoxItem FontSize="20">+</ComboBoxItem>
+                <ComboBoxItem FontSize="20">-</ComboBoxItem>
+            </ComboBox>
+            <Border Grid.Row="2" Grid.Column="2">
+                <TextBox Text="{Binding Numerador2}"></TextBox>
+            </Border>
+            <TextBox Grid.Row="3" Grid.Column="2" Text="{Binding Denominador2}"></TextBox>
+            <Border Grid.Row="2" Grid.Column="4">
+                <TextBlock Text ="{Binding NumeradorResult}"></TextBlock>
+            </Border>
+            <TextBlock Grid.Row="3" Grid.Column="4" Text="{Binding DenominadorResult}"></TextBlock>
+            <Border Grid.Row="4" Padding="5" Grid.ColumnSpan="5"></Border>
+        </Grid>
+        <Button Command="{Binding FraccionResultCommand}">Calcular</Button>
+    </StackPanel>
+</Window>
